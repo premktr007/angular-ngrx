@@ -1,5 +1,8 @@
+import { getCounter } from './../store/counter.selector';
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { CounterState } from '../store/counter.state';
 
 @Component({
   selector: 'app-counter-output',
@@ -7,15 +10,14 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./counter-output.component.css']
 })
 export class CounterOutputComponent implements OnInit {
-  counter: number;
+  counter$: Observable<number>;
   
-  // writing structre for the store is required while using select() but not required for dispatch.
-  constructor(private store: Store<{counter: {counter: number}}>) { }
+  // writing type for the store is required while using select() but not required for dispatch.
+  constructor(private store: Store<{counter: CounterState}>) { }
 
   ngOnInit(): void {
-    this.store.select('counter').subscribe(data => {
-      this.counter = data.counter;
-    })
+    this.counter$ = this.store.select(getCounter);
+    console.log(this.counter$)
   }
 
 }
