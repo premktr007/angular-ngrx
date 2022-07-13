@@ -2,10 +2,13 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { CounterComponent } from "./counter/counter.component";
 import { PostListComponent } from "./posts/post-list/post-list.component";
+import { AddPostComponent } from './posts/add-post/add-post.component';
 
 const routes: Routes = [
     { path: '', component: CounterComponent },
-    { path: 'posts', component: PostListComponent }
+    { path: 'posts', component: PostListComponent, children: [
+        { path: 'add', component: AddPostComponent}
+    ] }
 ]
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
