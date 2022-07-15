@@ -27,6 +27,7 @@ export class AddPostComponent implements OnInit {
     }
     // dispatching {post: <Object>} we can access action.post in reducer for better reading
     this.store.dispatch(addPostAction({post:this.postForm.value}));
+    this.postForm.reset();
   }
 
 }

@@ -13,6 +13,7 @@ import { PostListComponent } from './posts/post-list/post-list.component';
 import { NavComponent } from './nav/nav.component';
 import { appReducer } from './app.state';
 import { AddPostComponent } from './posts/add-post/add-post.component';
+import { EditPostComponent } from './posts/edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AddPostComponent } from './posts/add-post/add-post.component';
     CounterButtonsComponent,
     NavComponent,
     PostListComponent,
-    AddPostComponent
+    AddPostComponent,
+    EditPostComponent
   ],
   imports: [
     FormsModule,

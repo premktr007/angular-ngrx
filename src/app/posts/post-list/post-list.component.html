@@ -7,6 +7,7 @@
                     <th>ID</th>
                     <th>Title</th>
                     <th>Description</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -14,6 +15,10 @@
                     <td>{{post.id}}</td>
                     <td>{{post.title}}</td>
                     <td>{{post.description}}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm me-1" [routerLink]="['edit',post.id]">Update</button>
+                        <button class="btn btn-danger btn-sm" (click)="onDeletePost(post.id)">Delete</button>
+                    </td>   
                 </tr>
             </tbody>
         </table>
