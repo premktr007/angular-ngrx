@@ -9,11 +9,10 @@ import { StoreModule } from '@ngrx/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
-import { PostListComponent } from './posts/post-list/post-list.component';
 import { NavComponent } from './nav/nav.component';
 import { appReducer } from './app.state';
-import { AddPostComponent } from './posts/add-post/add-post.component';
-import { EditPostComponent } from './posts/edit-post/edit-post.component';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -22,9 +21,6 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
     CounterOutputComponent,
     CounterButtonsComponent,
     NavComponent,
-    PostListComponent,
-    AddPostComponent,
-    EditPostComponent
   ],
   imports: [
     FormsModule,
@@ -32,7 +28,8 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    StoreModule.forRoot(appReducer)
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    StoreModule.forRoot(appReducer) // load the counter state onstart of the application
   ],
   providers: [],
   bootstrap: [AppComponent]
