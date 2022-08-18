@@ -2,7 +2,7 @@ import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppState } from 'src/app/app.state';
-import { addPostAction } from '../state/posts.actions';
+import { addPostAction } from '../store/posts.actions';
 
 @Component({
   selector: 'app-add-post',

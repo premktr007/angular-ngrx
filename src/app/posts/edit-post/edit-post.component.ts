@@ -3,9 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
-import { updatePostAction } from '../state/posts.actions';
-import { getPost, getPosts } from '../state/posts.selector';
-import { Post } from '../state/posts.state';
+import { updatePostAction } from '../store/posts.actions';
+import { getPost, getPosts } from '../store/posts.selector';
+import { Post } from '../store/posts.state';
 
 @Component({
   selector: 'app-edit-post',

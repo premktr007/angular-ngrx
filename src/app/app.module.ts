@@ -9,11 +9,12 @@ import { StoreModule } from '@ngrx/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './shared/nav/nav.component';
 import { appReducer } from './app.state';
 import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { EffectsModule } from '@ngrx/effects';
     CounterOutputComponent,
     CounterButtonsComponent,
     NavComponent,
+    LoadingComponent,
   ],
   imports: [
     FormsModule,
@@ -30,8 +32,8 @@ import { EffectsModule } from '@ngrx/effects';
     HttpClientModule,
     AppRoutingModule,
     RouterModule,
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     StoreModule.forRoot(appReducer), // load the counter state onstart of the application
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     EffectsModule.forRoot([])
   ],
   providers: [],
