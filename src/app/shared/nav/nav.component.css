@@ -1,0 +1,13 @@
+.navbar-nav, .dropdown {
+    width: 100%;
+}
+.dropdown {
+    display: flex;
+    justify-content: end;
+    margin-right: 10px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 45px;
+}

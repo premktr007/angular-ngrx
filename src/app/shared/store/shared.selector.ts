@@ -4,3 +4,5 @@ import { SharedState } from './shared.state';
 export const getSharedState = createFeatureSelector<SharedState>('shared');
 
 export const getLoadingState = createSelector(getSharedState, (state) => state.isLoading);
+
+export const getErrorMsg = createSelector(getSharedState, (state) => state.errorMsg);

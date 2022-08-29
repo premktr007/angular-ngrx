@@ -1,8 +1,9 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './app.state';
-import { getLoadingState } from './shared/store/shared.selector';
+import { getLoadingState, getErrorMsg } from './shared/store/shared.selector';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,12 @@ import { getLoadingState } from './shared/store/shared.selector';
 export class AppComponent implements OnInit{
   title = 'ngrx';
   showLoading$: Observable<boolean>;
+  showErrorMsg$: Observable<string>;
 
   constructor(private store: Store<AppState>) {}
 
-  ngOnInit() {
+  ngOnInit(){
     this.showLoading$ = this.store.select(getLoadingState);
+    this.showErrorMsg$ = this.store.select(getErrorMsg);
   }
 }
