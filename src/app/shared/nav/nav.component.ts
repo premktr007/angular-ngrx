@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/app.state';
+import { autoLogout } from 'src/app/auth/store/auth.actions';
 import { isAuthenticated } from 'src/app/auth/store/auth.selector';
 
 @Component({
@@ -10,12 +11,18 @@ import { isAuthenticated } from 'src/app/auth/store/auth.selector';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  isAuthenticated: boolean;
+  isAuthenticated$: Observable<boolean>;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-      this.store.select(isAuthenticated).subscribe(resp => console.log(resp));
+      this.isAuthenticated$ = this.store.select(isAuthenticated);
+      console.log(this.isAuthenticated$)
+  }
+
+  onLogout(event: Event) {
+    event.preventDefault();
+    this.store.dispatch(autoLogout());
   }
 
 }

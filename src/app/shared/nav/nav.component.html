@@ -5,7 +5,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/']">Counter</a>
+          <a class="nav-link" [routerLink]="['counter']">Counter</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" [routerLink]="['posts']">Posts</a>
@@ -15,9 +15,9 @@
                 👤
               </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" [routerLink]="['login']">Login</a>
-                  <a class="dropdown-item" href="#">SignUp</a>
-                  <a class="dropdown-item" href="#">Logout</a>
+                  <a *ngIf="!(isAuthenticated$ | async)" class="dropdown-item" [routerLink]="['/']">Login</a>
+                  <a *ngIf="!(isAuthenticated$ | async)" class="dropdown-item" [routerLink]="['auth/signup']">SignUp</a>
+                  <a *ngIf="(isAuthenticated$ | async)" class="dropdown-item" [routerLink]="['/']" (click)="onLogout($event)">Logout</a>
               </div>
             </li>
       </ul>

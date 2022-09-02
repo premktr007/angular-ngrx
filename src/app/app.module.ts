@@ -17,6 +17,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { AuthReducer } from './auth/store/auth.reducer';
+import { AuthEffects } from './auth/store/auth.effects';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { AuthReducer } from './auth/store/auth.reducer';
   ],
   imports: [
     StoreModule.forRoot(appReducer), // load the counter state onstart of the application
-    // StoreModule.forFeature(AUTH_STATE_NAME, AuthReducer),
+    StoreModule.forFeature(AUTH_STATE_NAME, AuthReducer),
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
@@ -37,7 +38,7 @@ import { AuthReducer } from './auth/store/auth.reducer';
     AppRoutingModule,
     RouterModule,
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './app.state';
 import { getLoadingState, getErrorMsg } from './shared/store/shared.selector';
+import { autoLogin } from './auth/store/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -20,5 +21,6 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     this.showLoading$ = this.store.select(getLoadingState);
     this.showErrorMsg$ = this.store.select(getErrorMsg);
+    this.store.dispatch(autoLogin());
   }
 }

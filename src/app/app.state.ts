@@ -7,13 +7,11 @@ import { SharedReducer } from "./shared/store/shared.reducer";
 import { SharedState } from "./shared/store/shared.state";
 
 export interface AppState {
-    authentication: AuthState,
     counter: CounterState,
     shared: SharedState
 }
 
 export const appReducer = {
-    authentication: AuthReducer,
     counter: counterReducer,
     shared: SharedReducer
 }

@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h3>Signup</h3>
+        <hr>
+        <form (ngSubmit)="onSignup(loginForm)" #loginForm="ngForm" ngNativeValidate>
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="text" name="email" class="form-control" required ngModel>
+            </div>
+            <div class="mb-3">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" required ngModel>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success float-start">Submit</button>
+            </div>
+        </form>
+    </div>
