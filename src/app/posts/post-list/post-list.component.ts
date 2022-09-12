@@ -1,23 +1,29 @@
+import { PostsState } from './../store/posts.state';
 import { getPosts } from '../store/posts.selector';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.state';
 import { Post } from '../store/posts.state';
 import { Observable } from 'rxjs';
-import { deletePostAction } from '../store/posts.actions';
+import { deletePostAction, loadPosts } from '../store/posts.actions';
+import { setLoading } from 'src/app/shared/store/shared.actions';
 
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.css']
 })
-export class PostListComponent implements OnInit {
+export class PostListComponent implements OnInit, AfterViewInit {
 
   posts$: Observable<Post[]>;
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<PostsState>) { }
 
   ngOnInit(): void {
     this.posts$ = this.store.select(getPosts);
+    this.store.dispatch(loadPosts());
+  }
+
+  ngAfterViewInit(): void {
+    this.store.dispatch(setLoading({ status: true }));
   }
 
   onDeletePost(postId) {

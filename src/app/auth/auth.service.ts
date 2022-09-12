@@ -6,7 +6,7 @@ import { AuthResponse } from "./authResponse.model";
 import { User } from "./user.model";
 import { AppState } from "../app.state";
 import { Store } from "@ngrx/store";
-import { autoLogin } from "./store/auth.actions";
+import { autoLogout } from "./store/auth.actions";
 @Injectable({
     providedIn: 'root'
 })
@@ -56,7 +56,7 @@ export class AuthService {
         const timeInterval = expiryDate - todayDate;
 
         this.timeoutInterval = setTimeout(() => {
-            this.store.dispatch(autoLogin());
+            this.store.dispatch(autoLogout());
         }, timeInterval)
     }
 

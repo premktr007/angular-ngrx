@@ -1,3 +1,5 @@
+import { PostsEffect } from './../posts/store/posts.effects';
+import { EffectsModule } from '@ngrx/effects';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +17,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
+    EffectsModule.forFeature([PostsEffect])
   ],
   declarations: [LoginComponent, SignupComponent],
 })

@@ -9,11 +9,5 @@ export interface PostsState {
 }
 
 export const intialState: PostsState  = {
-    posts: [
-        {
-            id: 1,
-            title: 'introduction',
-            description: 'My name is prem kumar'
-        }
-    ]
+    posts: []
 }
