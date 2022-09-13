@@ -1,14 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
-import { addPostAction, deletePostAction, loadPostsSuccess, updatePostAction } from './posts.actions';
+import { addPostSuccess, deletePostAction, loadPostsSuccess, updatePostAction } from './posts.actions';
 import { intialState } from './posts.state';
 
 const _postsReducer = createReducer(intialState,
-  on(addPostAction, (state, action) => {
-    let post = { ...action.post };
-    post.id = state.posts.length + 1;
+  on(addPostSuccess, (state, action) => {
     return {
       ...state,
-      posts: [...state.posts, post],
+      posts: [...state.posts, action.post],
     };
   }),
 

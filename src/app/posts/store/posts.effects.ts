@@ -1,5 +1,5 @@
 import { PostsService } from './../posts.service';
-import { loadPosts, loadPostsSuccess } from './posts.actions';
+import { addPostAction, addPostSuccess, loadPosts, loadPostsSuccess } from './posts.actions';
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { Post, PostsState } from "./posts.state";
@@ -7,7 +7,6 @@ import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { setErrorMsg, setLoading } from 'src/app/shared/store/shared.actions';
 import { AuthService } from 'src/app/auth/auth.service';
-import { loginSuccess } from 'src/app/auth/store/auth.actions';
 
 @Injectable()
 export class PostsEffect {
@@ -27,7 +26,7 @@ export class PostsEffect {
             map((data) => {
               const posts: Post[] = [];
               for (let key in data) {
-                posts.push(data[key]);
+                posts.push({...data[key], id: key });
               }
               this.store.dispatch(setErrorMsg({ message: '' }));
               this.store.dispatch(setLoading({ status: false }));
@@ -43,4 +42,20 @@ export class PostsEffect {
       );
     },
   );
+
+  addPost$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(addPostAction),
+      exhaustMap((action) => {
+        console.log(action.post)
+        return this.postsService.addPost(action.post).pipe(
+          map((data) => {
+            const postData = {...action.post};
+            postData.id = data.name;
+            return addPostSuccess({post: postData});
+          })
+        )
+      })
+    )
+  })
 }

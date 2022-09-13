@@ -7,10 +7,16 @@ import { Post } from "./store/posts.state";
     providedIn: 'root'
 })
 export class PostsService {
+    endpoint: string = 'https://ngrx-course-40d4c-default-rtdb.firebaseio.com/posts.json';
+
     constructor(private http: HttpClient) {}
 
     getPosts(): Observable<Post[]> {
-        const endpoint = 'https://ngrx-course-40d4c-default-rtdb.firebaseio.com/posts.json';
-        return this.http.get<Post[]>(endpoint);
+        return this.http.get<Post[]>(this.endpoint);
+    }
+
+    addPost(post: Post): Observable<any> {
+        const body = post;
+        return this.http.post(this.endpoint, body);
     }
 }

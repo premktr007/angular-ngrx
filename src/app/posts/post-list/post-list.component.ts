@@ -12,7 +12,7 @@ import { setLoading } from 'src/app/shared/store/shared.actions';
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.css']
 })
-export class PostListComponent implements OnInit, AfterViewInit {
+export class PostListComponent implements OnInit {
 
   posts$: Observable<Post[]>;
   constructor(private store: Store<PostsState>) { }
@@ -20,10 +20,10 @@ export class PostListComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.posts$ = this.store.select(getPosts);
     this.store.dispatch(loadPosts());
-  }
-
-  ngAfterViewInit(): void {
-    this.store.dispatch(setLoading({ status: true }));
+    // fixes the ExpressHaveBeenChanged error
+    setTimeout(() => {
+      this.store.dispatch(setLoading({ status: true }));
+    }, 0);
   }
 
   onDeletePost(postId) {
